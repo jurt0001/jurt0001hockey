@@ -1,0 +1,416 @@
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    
+    margin: 0;
+    padding 0;
+}
+
+body {
+    -webkit-touch-callout: none;               
+    -webkit-text-size-adjust: none;             
+    -webkit-user-select: none;                   
+    background-color:#E4E4E4;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.appVOID {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    
+    
+/*
+    height:50px;                   
+    width:225px;                   
+*/
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .appVOID {
+        background-position:left center;
+        padding:75px 0px 75px 10px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-0px auto 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:30px;
+    font-weight:normal;
+    margin-left: 8px;
+    overflow:visible;
+    
+    padding-left: 8px;
+    text-align:center;
+    line-height: 2.5rem;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+
+.page {
+    display: none;
+    padding-top: 2.6rem 0 ;
+}
+
+
+.matchUp {
+    
+    display: block;
+    width:100%;
+    margin: 0 auto;
+/*    padding: 0 2rem 0 2rem;*/
+    margin-bottom: 10px;
+    
+    
+}
+
+.vs {
+    
+    width:100%;
+/*    float: left;*/
+    padding-top: .2rem;
+    padding-bottom: .2rem;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.schedule {
+    text-align: center;
+    background-color: antiquewhite;
+    
+}
+
+/*Unless they are the one and only active Page*/
+
+.active {
+    display: block;
+    margin: 0 auto;
+}
+
+li {
+    list-style: none;
+    
+}
+
+.date {
+    background-color:darkgray;
+    padding-left: 8px;
+    
+}
+
+/* #header1 {
+ background-color: aqua;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5vh;
+    
+
+}*/
+
+main {
+    margin: 0 auto;
+}
+
+
+
+/*NAVIGATION*/
+
+[data-role="nav"] {
+    position: fixed;
+    z-index: 30;
+    bottom: 0;
+    width: 100%;
+    height: 4rem;
+    background-color: #ccc;
+}
+
+
+
+.tabs {
+    list-style: none;
+    padding: 0.9rem 0 0 0 ;
+/*    display:table-row;*/
+    display: flex;
+    align-items: center;
+}
+
+.tabs li {
+    float: left;
+    width: 50%;
+    margin: 0 auto;
+/*    padding-left: 20px;*/
+/*    display: table-cell;*/
+}
+
+.tabs a {
+    display: block;
+    line-height: 2rem;
+    font-size: 1.0rem;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+   
+/*    margin-left: 20px;*/
+}
+
+
+
+#nav_gameresults {
+    border-right: 1px solid #333;
+/*
+    font-weight: 700;
+    color: red;
+*/
+    
+}
+
+
+.tabs a:active,
+.tabs a:hover{
+	 
+     font-weight: 700;
+	
+} 
+
+
+
+/*END NAVIGATION*/
+
+/* Start 2 page display */
+/*pages are not displayed*/
+
+[data-role="page"] {
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 10;
+/*    padding-bottom: 5rem;*/
+    /* to match the height of the nav bar */
+/*    padding-top: 4rem;*/
+    /* leaving space for the heading */
+}
+
+[data-role="page"].active {
+    display: block;
+    z-index: 20;
+}
+
+
+
+
+
+/* End 2 page display */
+
+#teamStandings {
+    border-collapse: collapse;
+    border: 1px solid #666;
+    width: 90%;
+    margin: 2rem auto;
+}
+
+#teamStandings th,
+#teamStandings td {
+    border: 1px solid #999;
+    text-align: center;
+    padding: 0.5rem 0.5rem;
+    line-height: 2rem;
+}
+
+
+.img {
+    width: 30px;
+    height: auto;
+    
+} 
+
+/* REFRESH BUTTON */
+
+#button1 {
+   
+    position: fixed;
+    width:100%;
+    height: 2.5rem;
+    top: 0;
+    right: 0;
+    font-size: 1.03rem;
+    z-index: 100; 
+    margin:0 0 0 0;
+}
+
+.template{
+  display: none;
+}
+
+#icons svg{
+  width: 100px;
+  height: auto;
+  margin: 0 auto;
+}
+
+#icons {
+    width: 100%;
+/*    float: left;*/
+    
+}
+
+.homeIcon svg{ 
+/*  float: left;*/
+  width: 8rem;
+  height: auto;
+}
+
+.awayIcon svg{
+/*  float: left;*/
+  width: 8rem;
+  height: auto;
+}
+
+
+
+#icons svg #Ottawa_Senators, #Buffalo_Sabers, #Montreal_Canadiens, #Boston_Bruins, #Carolina_Hurricanes, #Philadelphia_Flyers, #Tampa_Bay_Lightning, #Toronto_Maple_Leafs, #Florida_Panthers, #New_Jersey_Devils, #New_York_Rangers, #New_York_Islanders, #Pittsburgh_Penguins, #Columbus_Blue_Jackets, #Detroit_Red_Wings, #Washington_Capitals{
+  display: none;
+}
+
+#icons.Ottawa_Senators #Ottawa_Senators,
+#icons.Detroit_Red_Wings #Detroit_Red_Wings,
+#icons.Pittsburgh_Penguins #Pittsburgh_Penguins, 
+#icons.Tampa_Bay_Lightning #Tampa_Bay_Lightning,
+#icons.Buffalo_Sabers #Buffalo_Sabers, 
+#icons.Montreal_Canadiens #Montreal_Canadiens, 
+#icons.Boston_Bruins #Boston_Bruins, 
+#icons.Carolina_Hurricanes #Carolina_Hurricanes, 
+#icons.Philadelphia_Flyers #Philadelphia_Flyers, 
+#icons.Toronto_Maple_Leafs #Toronto_Maple_Leafs, 
+#icons.Florida_Panthers #Florida_Panthers, 
+#icons.New_Jersey_Devils #New_Jersey_Devils, 
+#icons.New_York_Rangers #New_York_Rangers, 
+#icons.New_York_Islanders #New_York_Islanders, 
+#icons.Columbus_Blue_Jackets #Columbus_Blue_Jackets, 
+#icons.Washington_Capitals #Washington_Capitals{
+  display: block
+  
+}
+
+
+
+	.st0{display:inline;}
+	.st1{display:inline;fill:#CE1227;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st2{display:inline;}
+	.st3{display:inline;fill:#FCB514;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st4{display:inline;fill:#041E41;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st5{fill:#F0F0F0;}
+	.st6{display:inline;fill:#002654;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st7{fill:#FFFFFF;}
+	.st8{display:inline;fill:#00205B;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st9{fill:#FEFEFE;}
+	.st10{display:inline;fill:#FF0000;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st11{display:inline;fill:#F74902;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st12{fill:#A3A3A3;}
+	.st13{display:inline;fill:#CE1126;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st14{display:inline;fill:#F95602;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st15{display:inline;fill:#0038A8;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st16{display:inline;fill:#002868;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st17{display:inline;fill:#3ACC41;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+	.st18{display:inline;fill:#BF910C;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
+
+
+.page {padding-bottom:4.1rem;}
+
+.schedule {
+    padding-top: .2rem;
+    padding-bottom: .2rem;
+    
+}
+
+matchUp:nth-child(3){
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+    justify-content: center;
+}
+
+#master {
+    
+align-content: center;
+    padding-left; 10rem;
+    
+}
+
+.tableLogo {
+   
+   
+    
+    
+}
+
+#icons .tableLogo {
+    width: auto;
+    
+}
+
+
